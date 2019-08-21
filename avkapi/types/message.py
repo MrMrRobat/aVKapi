@@ -6,6 +6,7 @@ from . import fields
 from .action import Action
 from .attachment import Attachment
 from .geo import Geo
+from ..utils import helper
 
 
 class MessageType:
@@ -33,9 +34,26 @@ class Message(base.VKObject):
     geo: Geo = fields.Field(base=Geo)
     payload: base.String = fields.Field()
     fwd_messages: typing.List['Message'] = fields.ListField(base='Message')
+    reply_message: 'Message' = fields.Field(base='Message')
     action: Action = fields.Field(base=Action)
     content_type = fields.Field()
 
     def __int__(self):
         return self.message_id
 
+
+class ContentTypes(helper.Helper):
+    """
+    List of message content types
+
+    WARNING: List elements.
+
+    :key: TEXT
+    :key: UNKNOWN
+    :key: ANY
+    """
+    mode = helper.HelperMode.snake_case
+
+    TEXT = helper.ListItem()  # text
+    UNKNOWN = helper.ListItem()  # unknown
+    ANY = helper.ListItem()  # any

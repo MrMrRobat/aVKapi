@@ -2,4 +2,15 @@ start.json
 draft*
 config*
 venv/
-.idea/
+*.pyc
+myexamples/
+
+.idea/*
+.env/*
+venv/*
+*.py[cod]
+__pycache__
+build/*
+dist/*
+*.egg-info
+.DS_Store
